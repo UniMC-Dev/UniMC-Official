@@ -1,0 +1,43 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
+.wave-container {
+  width: 100%;
+  /* 大概占据页面底部的六分之一 */
+  height: calc(100vh / 6);
+  position: fixed; /* 固定在视口中 */
+  bottom: 0; /* 底部对齐 */
+  left: 0;
+  overflow: hidden; /* 防止溢出显示滚动条 */
+  z-index: -1; /* 确保它在其他内容之上，但可以低于需要交互的元素 */
+  scroll-behavior: smooth;
+}
+
+.wave-svg {
+  width: 100%;
+  height: 100%;
+  display: block; /* 移除SVG底部可能出现的空白 */
+}
+
+.wave-path {
+  fill: #1eb8ff; /* 默认波浪颜色 */
+  /* 可以根据需要调整不透明度 */
+  /* opacity: 0.8; */
+}
+
+/* 不同的波浪层使用不同的颜色和透明度，创建层次感 */
+.wave-bottom {
+  fill: #1f93ff; /* 较深的灰色 */
+  opacity: 1;
+}
+
+.wave-middle {
+  fill: #7ac3ff; /* 中等灰色 */
+  opacity: 0.8;
+}
+
+.wave-top {
+  fill: #9ae2ff; /* 较浅的灰色 */
+  opacity: 0.6;
+}
