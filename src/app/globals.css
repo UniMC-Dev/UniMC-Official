@@ -1,8 +1,11 @@
-@import "tailwindcss";
-
-:root {
+:root,body {
   --background: #ffffff;
   --foreground: #171717;
+  user-select: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @theme inline {
