@@ -1,15 +1,16 @@
 "use client";
+
 import '@ant-design/v5-patch-for-react-19';
 
-import React, { useState } from "react";
-import { Card, Button, Typography, Space,Image,Input,Divider,Collapse,Anchor } from 'antd';
+import React, { useState,useMemo } from "react";
+import { Card, Button, Typography, Space,Image,Input,Divider,Collapse,Anchor,Carousel,message,Timeline,Avatar, Tooltip} from 'antd';
 const { Meta } = Card;
 import {
-  MenuOutlined
+  MenuOutlined,
+  ClockCircleOutlined
 } from '@ant-design/icons';
 
 const { Search } = Input;
-
 const { Title, Text } = Typography;
 
 import '../css/WaveBackground.css'; // 导入CSS文件用于动画
@@ -86,9 +87,22 @@ const intro = [
 ];
 
 const ServerStatusPage = () => {
-
+  const [msg, contextHolder] = message.useMessage();
+  const [arrow, setArrow] = useState('Show');
+  const mergedArrow = useMemo(() => {
+    if (arrow === 'Hide') {
+      return false;
+    }
+    if (arrow === 'Show') {
+      return true;
+    }
+    return {
+      pointAtCenter: true,
+    };
+  }, [arrow]);
   return (
     <>
+      {contextHolder}
       <div id='bg' style={{position: 'absolute',background:"url('./bg.png')",top: 0,left: 0,width: '100%',height: '100%',zIndex: -1,backgroundSize: 'cover',overflow: 'hidden',backgroundRepeat: 'no-repeat'}}></div>
       <nav style={{ marginBottom: '24px',position: 'fixed',display: 'flex',justifyContent: 'space-evenly',alignItems: 'center',zIndex: 1,width: '100%',top: 0,left: 0,backgroundColor: 'rgba(255,255,255, 1)',backdropFilter: 'blur(10px)',boxShadow: '0 1px 4px rgba(0, 21, 41, 0.3)' }}>
             <div style={{textOverflow:"ellipsis",overflow:"hidden",whiteSpace:"nowrap",marginRight: '20px'}}>
@@ -115,9 +129,14 @@ const ServerStatusPage = () => {
                     title: '服务器列表',
                   },
                   {
-                    key: 'activity',
-                    href: '#activity',
-                    title: '活动',
+                    key: 'about',
+                    href: '#about',
+                    title: '关于我们',
+                  },
+                  {
+                    key: 'sponsor',
+                    href: '#sponsor',
+                    title: '赞助',
                   },
                 ]}
               />
@@ -133,7 +152,7 @@ const ServerStatusPage = () => {
               <img width={'250px'} height={'250px'} src='./logo.png' alt='logo' draggable='false' style={{margin: '-50px 0',marginBottom: '-70px'}}></img>
               <Divider />
               <Title level={3}>UniMC 服务器联盟</Title>
-              <Text style={{marginTop: '20px'}}>欢迎加入 UniMC 服务器联盟，一个服务器资源共享和技术共享组织</Text><br/>
+              <Text style={{marginTop: '20px'}}>一个服务器资源共享和技术共享组织</Text><br/>
               <Collapse size="small" accordion style={{margin: '0 auto',marginTop: '15px',width:"300px",textAlign: 'left'}} items={intro} />
               <Button color='primary' variant='solid' style={{marginTop: '15px',marginRight: '10px'}}>申请加入</Button>
               <Button color='primary' variant='outlined' style={{marginTop: '15px'}}>了解更多</Button>
@@ -143,19 +162,168 @@ const ServerStatusPage = () => {
           <WaveBackground/>
         </div>
       </div>
-      <div id='list' style={{position:'absolute',top:'calc(100% + 100px)',left:'50%',transform:'translate(-50%,0)',textAlign: 'center',zIndex: -1,backdropFilter: 'blur(10px)',paddingBottom: '100px'}}>
-        <h1>服务器列表</h1>
-        <Card
-          hoverable
-          style={{ width: 240 }}
-          cover={<img alt="example" src="./mcbucket.png" draggable='false'/>}
-        >
-          <Meta title="MCBUCKET 服务器" description="QQ群号:868010407" /><br/>
-          <Button type='primary' shape='round' size='large'>加入QQ群</Button>
-        </Card>
+      <div style={{position:'absolute',top:'calc(100% + 60px)',left:'50%',transform:'translate(-50%,0)',textAlign: 'center',zIndex: -1,backdropFilter: 'blur(10px)',paddingBottom: '100px'}}>
+          <div id='list'>
+            <h1 className='title' style={{margin:'0'}}>服务器列表</h1>
+            <Title level={5} style={{marginTop: '5px'}}>（排名不分前后）</Title>
+            <Card
+              hoverable
+              style={{ width: 240,display: 'inline-block',marginLeft: '10px',marginRight: '10px',marginTop: '20px' }}
+              cover={<img alt="example" src="./icon/mcbucket.png" draggable='false'/>}
+            >
+              <Meta title="MCBUCKET 公益服" description="纯公益多玩法服务器" /><br/>
+              <Button onClick={()=>{window.open('https://www.mcbucket.dpdns.org')}} type='primary' shape='round' size='large'>访问麦桶官网</Button>
+              <Button onClick={()=>{window.open('https://qm.qq.com/cgi-bin/qm/qr?k=ya2U74u0Mrci1hstIiz-aoOlBiDbrT6c&jump_from=webapi&authKey=IOZDCcQgFaHR1MUDF32lqKQCLhXE5DC3E65/ZcP65ZX5wo1N3gbo1VV005vyqElN')}} style={{marginTop: '10px'}} shape='round' size='large'>一键加群</Button>
+            </Card>
+            <Card
+              hoverable
+              style={{ width: 240,display: 'inline-block',marginLeft: '10px',marginRight: '10px' ,marginTop: '20px' }}
+              cover={<img alt="example" src="./icon/mclume.png" draggable='false'/>}
+            >
+              <Meta title="MCLUME 服务器" description="纯公益运营五载" /><br/>
+              <Button onClick={()=>{window.open('https://www.mcpool.net/')}} type='primary' shape='round' size='large'>访问麦熙官网</Button>
+              <Button onClick={()=>{window.open('https://qm.qq.com/cgi-bin/qm/qr?k=B3OM7rvZNk8egVipmSmwu0Gde0KaDP46&jump_from=webapi&authKey=fDCN+hVIVb8gaD7rjHtbTmPuYJ8efn0TQ4eO6NFj9F+wLnr1Ms7iEIrVt3uric1x')}} style={{marginTop: '10px'}} shape='round' size='large'>一键加群</Button>
+            </Card>
+            <Card
+              hoverable
+              style={{ width: 240,display: 'inline-block',marginLeft: '10px',marginRight: '10px' ,marginTop: '20px' }}
+              cover={<img alt="example" src="./icon/tacs.svg" draggable='false'/>}
+            >
+              <Meta title="茶水晶 TACS" description="着眼创新，放眼未来" /><br/>
+              <Button onClick={()=>{window.open('https://www.tacserver.cn/')}} type='primary' shape='round' size='large'>访问茶水晶官网</Button>
+              <Button onClick={()=>{
+                navigator.clipboard.writeText('631421425')
+                  .then(() => {
+                    msg.success('已复制');
+                  })
+                  .catch(() => {
+                    msg.error('复制失败');
+                  });
+              }} style={{marginTop: '10px'}} shape='round' size='large'>复制群号</Button>
+            </Card>
+            <Card
+              hoverable
+              style={{ width: 240,display: 'inline-block',marginLeft: '10px',marginRight: '10px' ,marginTop: '20px' }}
+              cover={<img alt="example" src="./icon/bjx.png" draggable='false'/>}
+            >
+              <Meta title="北极星生存服" description="一个新兴服务器" /><br/>
+              <Button  onClick={() => {
+                navigator.clipboard.writeText('3558847968')
+                  .then(() => {
+                    msg.success('已复制');
+                  })
+                  .catch(() => {
+                    msg.error('复制失败');
+                  });
+              }}
+                type='primary' shape='round' size='large'>加腐竹好友</Button>
+                <Button onClick={()=>{
+                  navigator.clipboard.writeText('北极星生存服')
+                  .then(() => {
+                    msg.success('已复制');
+                  })
+                  .catch(() => {
+                    msg.error('复制失败');
+                  });
+                }} style={{marginTop: '10px'}} shape='round' size='large'>复制名称</Button>
+            </Card>
+            <Title level={3} style={{marginTop: '60px',whiteSpace: 'nowrap'}}>联盟画廊</Title>
+            <Image width={'200px'} style={sscss} preview={false} src='./ss/ss1.png' draggable='false'></Image>
+            <Image width={'200px'} style={sscss} preview={false} src='./ss/ss2.png' draggable='false'></Image>
+            <Image width={'200px'} style={sscss} preview={false} src='./ss/ss3.png' draggable='false'></Image>
+            <Image width={'200px'} style={sscss} preview={false} src='./ss/ss4.png' draggable='false'></Image>
+        </div>
+        <Divider style={{marginTop: '60px'}}></Divider>
+        <div id='about' style={{marginTop: '40px'}}>
+          <h1 className='title' id='title-red'>关于我们</h1>
+          <Title level={3}>联盟历史</Title>
+           <Timeline
+            style={{marginTop: '30px'}}
+            mode="alternate"
+            items={[
+              {
+                children: '创建 UniMC 联盟 的构想被提出 2023-2-17',
+              },
+              {
+                children: '初代联盟正式运行，吸纳了4个成员服 2023-5-12',
+                color: 'green',
+              },
+              {
+                dot: <ClockCircleOutlined style={{ fontSize: '16px' }} />,
+                children: `主创服务器发生 521 事件，联盟局势陷入混乱 2023-5-21~25`,
+              },
+              {
+                color: 'red',
+                children: '初代联盟解散，计划被搁置 2023-5-26',
+              },
+              {
+                children: '在艰难的局势下重新建立 新 UniMC 联盟 2025-5-18',
+              },
+              {
+                dot: <ClockCircleOutlined style={{ fontSize: '16px' }} />,
+                children: '截至今日，累计有5个服务器加入 UniMC 联盟组织',
+              },
+            ]}
+          />
+          <Title level={3}>主创成员</Title>
+          <Space size={'small'}>
+              <Tooltip placement="bottom" title={'Xiaozhe Nice'} color='#108ee9' arrow={mergedArrow}>
+              <Avatar
+                size={ 100 }
+                icon={<Image src='./avatar/xiaozhenice.png' alt='Xiaozhe Nice'></Image>}
+              />
+            </Tooltip>   
+            <Tooltip placement="bottom" title={'Zhanglao8'} color='#108ee9' arrow={mergedArrow}>
+              <Avatar
+                size={ 100 }
+                icon={<Image src='./avatar/zhanglao8.png' alt='Zhanglao8'></Image>}
+              />
+            </Tooltip>
+            <Tooltip placement="bottom" title={'WebYogurt'} color='#108ee9' arrow={mergedArrow}>
+              <Avatar
+                size={ 100 }
+                icon={<Image src='./avatar/webyogurt.png' alt='Zhanglao8'></Image>}
+              />
+            </Tooltip>
+          </Space>
+          <Title style={{marginTop: '60px'}} level={3}>在任管理</Title>
+          <Space size={'small'}>
+              <Tooltip placement="bottom" title={'Koshca_'} color='#108ee9' arrow={mergedArrow}>
+              <Avatar
+                size={ 100 }
+                icon={<Image src='./avatar/koshca.png' alt='Xiaozhe Nice'></Image>}
+              />
+            </Tooltip>   
+            <Tooltip placement="bottom" title={'Bili_Emo'} color='#108ee9' arrow={mergedArrow}>
+              <Avatar
+                size={ 100 }
+                icon={<Image src='./avatar/biliemo.png' alt='Zhanglao8'></Image>}
+              />
+            </Tooltip>
+            <Tooltip placement="bottom" title={'凉'} color='#108ee9' arrow={mergedArrow}>
+              <Avatar
+                size={ 100 }
+                icon={<Image src='./avatar/liang.png' alt='Zhanglao8'></Image>}
+              />
+            </Tooltip>
+            <Tooltip placement="bottom" title={'CHAT-AoNie'} color='#108ee9' arrow={mergedArrow}>
+              <Avatar
+                size={ 100 }
+                icon={<Image src='./avatar/CHATAoNie.png' alt='Zhanglao8'></Image>}
+              />
+            </Tooltip>
+          </Space>
+        </div>
       </div>
     </>
   );
 };
 
 export default ServerStatusPage;
+
+const sscss = {
+  margin: '10px 0',
+  boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)',
+  borderRadius: '5px',
+  overflow: 'hidden',
+};

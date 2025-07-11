@@ -27,3 +27,27 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.title::before{
+  display: inline-block;
+  width: 8px;
+  height: 36px;
+  content: "";
+  border-radius: 20px;
+  background-color: rgb(0, 138, 230);
+  transform: translate(0,6px);
+  position: relative;
+  right: 10px;
+}.title::after{
+  display: inline-block;
+  width: 8px;
+  height: 36px;
+  content: "";
+  border-radius: 20px;
+  background-color: rgb(0, 138, 230);
+  transform: translate(0,6px);
+  position: relative;
+  left: 10px;
+}#title-red::before,#title-red::after{
+  background-color: rgb(252, 59, 59);
+}
