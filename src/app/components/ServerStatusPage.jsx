@@ -91,9 +91,9 @@ const ServerStatusPage = () => {
     <>
       <div id='bg' style={{position: 'absolute',background:"url('./bg.png')",backdropFilter: 'blur(10px)',top: 0,left: 0,width: '100vw',height: '100vh',zIndex: -1,backgroundSize: 'cover'}}></div>
       <nav style={{ marginBottom: '24px',position: 'fixed',display: 'flex',justifyContent: 'space-evenly',alignItems: 'center',zIndex: 1,width: '100%',top: 0,left: 0,backgroundColor: 'rgba(255,255,255, 1)',backdropFilter: 'blur(10px)',boxShadow: '0 1px 4px rgba(0, 21, 41, 0.3)' }}>
-            <div>
+            <div style={{textOverflow:"ellipsis",overflow:"hidden",whiteSpace:"nowrap",marginRight: '20px'}}>
               <img alt='logo' width={'70px'} height={'70px'} src='./logo.png' draggable='false' style={{verticalAlign:"middle"}}></img>
-              <Title style={{marginLeft: '-5px',display: 'inline-block',alignSelf: 'center',fontSize: '20px',transform: 'translateY(3px)'}} level={3}>服务器联盟</Title>
+              <Title style={{whiteSpace: 'nowrap',marginLeft: '-5px',display: 'inline-block',alignSelf: 'center',fontSize: '20px',transform: 'translateY(3px)'}} level={3}>服务器联盟</Title>
             </div>
             <div>
               <Search placeholder="搜索" style={{width: "200px",verticalAlign:"middle"}} allowClear />
