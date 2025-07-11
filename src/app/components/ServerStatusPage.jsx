@@ -143,7 +143,7 @@ const ServerStatusPage = () => {
           <WaveBackground/>
         </div>
       </div>
-      <div id='list' style={{position:'absolute',top:'calc(100% + 50px)',left:'50%',transform:'translate(-50%,0)',textAlign: 'center',zIndex: -1,backdropFilter: 'blur(10px)',paddingBottom: '100px'}}>
+      <div id='list' style={{position:'absolute',top:'calc(100% + 100px)',left:'50%',transform:'translate(-50%,0)',textAlign: 'center',zIndex: -1,backdropFilter: 'blur(10px)',paddingBottom: '100px'}}>
         <h1>服务器列表</h1>
         <Card
           hoverable
