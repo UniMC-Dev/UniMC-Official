@@ -7,6 +7,13 @@ export const metadata = {
   viewport: 'width=device-width, initial-scale=0.8',
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 0.8,
+  maximumScale: 0.8,
+  userScalable: false,
+};
+
 const Page = () => {
   return (
     <main>
