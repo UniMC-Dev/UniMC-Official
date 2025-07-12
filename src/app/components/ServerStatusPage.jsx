@@ -7,19 +7,20 @@ import { Card, Button, Typography, Space,Image,Input,Divider,Collapse,Anchor,Car
 const { Meta } = Card;
 import {
   MenuOutlined,
-  ClockCircleOutlined
+  ClockCircleOutlined,
+  GithubOutlined,
+  QqOutlined,
 } from '@ant-design/icons';
 
 const { Search } = Input;
 const { Title, Text } = Typography;
 
-import '../css/WaveBackground.css'; // 导入CSS文件用于动画
-
+import '../css/WaveBackground.css';
+import { Footer } from 'antd/es/layout/layout';
 const WaveBackground = () => {
   return (
     <div className="wave-container">
       <svg className="wave-svg" viewBox="0 0 1440 200" preserveAspectRatio="none">
-        {/* 底部波浪 */}
         <path
           className="wave-path wave-bottom"
           d="M0,160 Q360,100 720,160 T1440,160 V200 H0 Z"
@@ -34,7 +35,6 @@ const WaveBackground = () => {
           />
         </path>
 
-        {/* 中间波浪 (透明度稍低，颜色稍浅) */}
         <path
           className="wave-path wave-middle"
           d="M0,170 Q360,120 720,170 T1440,170 V200 H0 Z"
@@ -113,7 +113,7 @@ const ServerStatusPage = () => {
               <Search placeholder="搜索" style={{width: "200px",verticalAlign:"middle"}} allowClear />
             </div>
           </nav>
-          <nav style={{padding: '10px 0',position: 'fixed',display: 'flex',justifyContent: 'space-evenly',alignItems: 'center',zIndex: 2,width: '100%',top: '60px',left: 0,backgroundColor: 'rgba(255,255,255, 1)',backdropFilter: 'blur(10px)',boxShadow: '0 4px 4px rgba(0, 21, 41, 0.3)' }}>
+          <nav style={{padding: '10px 0',position: 'fixed',display: 'flex',justifyContent: 'space-evenly',alignItems: 'center',zIndex: 2,width: '100%',top: '60px',left: 0,backgroundColor: 'rgba(255,255,255, 1)',backdropFilter: 'blur(10px)',boxShadow: '0 4px 4px rgba(0, 21, 41, 0.15)' }}>
             <div>
               <Anchor style={{transform: 'translateX(-5px)'}}
                 direction="horizontal"
@@ -142,7 +142,8 @@ const ServerStatusPage = () => {
               />
             </div>
             <div>
-              <Button type='primary' shape='round' size='large' style={{transform:'translateX(17px)'}}>立刻加入</Button>
+              <Button type='primary' shape='round' size='large' style={{transform:'translateX(17px)'}}
+              onClick={()=>{location.href='#join'}}>立刻加入</Button>
             </div>
           </nav>
       <div id='home' style={{width: '100%',height: '100%',position: 'absolute',top: 0,left: 0,zIndex: 1,backdropFilter: 'blur(10px)'}}>
@@ -154,14 +155,14 @@ const ServerStatusPage = () => {
               <Title level={3}>UniMC 服务器联盟</Title>
               <Text style={{marginTop: '20px'}}>一个服务器资源共享和技术共享组织</Text><br/>
               <Button color='primary' variant='solid' style={{marginTop: '15px',marginRight: '10px'}}>申请加入</Button>
-              <Button color='primary' variant='outlined' style={{marginTop: '15px'}}>了解更多</Button>
+              <Button onClick={()=>{window.open('https://status.zhanglao8.fun/')}} color='primary' variant='outlined' style={{marginTop: '15px'}}>服务状态</Button>
             </Card>
           </div>
           <small style={{position: 'absolute',bottom: '10px',left: '50vw',transform: 'translateX(-50%)',fontSize: '16px',color: 'rgba(0, 0, 0, .8)'}}>👇 往下拉查看更多内容</small>
           <WaveBackground/>
         </div>
       </div>
-      <div style={{position:'absolute',top:'calc(100% + 60px)',left:'50%',transform:'translate(-50%,0)',textAlign: 'center',zIndex: -1,backdropFilter: 'blur(10px)',paddingBottom: '100px'}}>
+      <div style={{position:'absolute',top:'calc(100% + 60px)',left:'50%',transform:'translate(-50%,0)',textAlign: 'center',zIndex: -1,backdropFilter: 'blur(10px)'}}>
           <div id='list' style={{height:'150px',width:'100%'}}></div>
           <div>
             <h1 className='title' style={{margin:'0'}}>服务器列表</h1>
@@ -234,10 +235,10 @@ const ServerStatusPage = () => {
             <Image width={'200px'} style={sscss} preview={false} src='./ss/ss4.png' draggable='false'></Image>
         </div>
         <Divider style={{marginTop: '60px'}}></Divider>
-        <div id='about' style={{width: '100%',height: '60px'}}></div>
+        <div id='about' style={{width: '100%',height: '150px'}}></div>
         <div>
           <h1 className='title' id='title-red'>关于我们</h1>
-          <Title level={3}>联盟历史</Title>
+          <Title level={3} style={{marginTop: '20px'}}>联盟历史</Title>
            <Timeline
             style={{marginTop: '30px'}}
             mode="alternate"
@@ -266,6 +267,13 @@ const ServerStatusPage = () => {
               },
             ]}
           />
+          <Card title="组织理念" style={about_css}>
+            <p>UniMC以技术为决定构成因素，属服务器联合技术组织，责任囊括服务器维护支持，网络安全支持以及各类网络保障支持</p>
+            <p>目前由两个主创服务器和多个加盟服务器构成</p>
+            <p>坚持公益运作，不接受任何圈钱和资本行为</p>
+            <p> UniMC 联盟的目标是为广大腐竹和组织提供一个良好的技术交流平台，让腐竹能够在一个平台上找到志同道合的同志，共同进步</p>
+          </Card>
+          <Image src='./logo_.png' alt='logo' draggable='false' preview={false} style={{borderRadius: '12px',width: '100px',height: '100px',boxShadow: '0 0 20px rgba(0, 0, 0, 0.1)',position:'relative',top: '-45px',left: '200px',transform: 'translateX(-50%)',background:'#fff'}}></Image>
           <Title level={3}>主创成员</Title>
           <Space size={'small'}>
               <Tooltip placement="bottom" title={'Xiaozhe Nice'} color='#274B93' arrow={mergedArrow}>
@@ -335,8 +343,64 @@ const ServerStatusPage = () => {
               />
             </Tooltip>
           </Space>
-          <Title style={{marginTop: '60px'}} level={3}>疑难解答</Title>
-          <Collapse size="small" accordion style={{margin: '0 auto',marginTop: '15px',width:"80%",textAlign: 'left'}} items={intro} />
+          <Title style={{marginTop: '80px'}} level={2}>疑难解答</Title>
+          <Collapse size="small" accordion style={{margin: '0 auto',marginTop: '15px',width:"80%",textAlign: 'left',maxWidth: '500px'}} items={intro} />
+        </div>
+        <Divider style={{marginTop: '60px'}}></Divider>
+        <div style={{height: '150px',width: '100%',}} id='sponsor'></div>
+        <div>
+          <h1 className='title' id='title-green'>赞助通道</h1>
+          <b>由于我们是纯公益组织，没有任何收入来源，故我们需要更多的支持来维持运营<br/>若您有意赞助我们，请加入我们的特定支援群</b><br/>
+          <Space style={{marginTop: '50px'}} size={'large'}>
+            <Image style={pay_css} src='./qr/sponsor.jpg' alt='群二维码' width={200}/>
+          </Space>
+          <p style={{marginTop: '50px'}}>
+            <b>若您想要为我们提供技术和硬件支持，也可以申请加群</b><br/>
+            <Button color='primary' variant='outlined' size='large' shape='round' style={{marginTop: '15px'}}
+            onClick={()=>{
+              navigator.clipboard.writeText('1056723570')
+              .then(() => {
+                msg.success('已复制');
+              })
+              .catch(() => {
+                msg.error('复制失败');
+              });
+            }}>复制QQ群号</Button>
+          </p>
+        </div>
+        <Divider style={{marginTop: '60px'}}></Divider>
+        <div style={{height: '150px',width: '100%',}} id='join'></div>
+        <div>
+          <h1 className='title' id='title-golden'>加入我们</h1>
+          <img id='join-logo' src="./logo_.png" alt="logo" width={200} draggable='false' style={{marginTop: '50px',marginBottom: '50px',border: '1px solid #274B93',boxShadow: '0 0 50px rgba(0, 0, 0, 0.1)',borderRadius: '12px',overflow: 'hidden'}}/>
+          <br />
+          <Tooltip placement="bottom" title={'请务必详细解释入群理由'} color='blue' arrow={mergedArrow}>
+            <Button color='blue' variant='outlined' size='large' style={{marginLeft: '10px',marginRight: '10px'}} 
+            onClick={()=>{
+              navigator.clipboard.writeText('719304821')
+              .then(() => {
+                msg.success('群号已复制');
+              })
+              .catch(() => {
+                msg.error('群号复制失败');
+              });
+            }}><QqOutlined /> 加入官方QQ群</Button>
+          </Tooltip>
+          <Tooltip placement="bottom" title={'请点击 Star 后加入官方QQ群，获取加入 GitHub 组织资格'} color='red' arrow={mergedArrow}>
+             <Button color='red' variant='outlined' size='large' style={{marginLeft: '10px',marginRight: '10px'}}
+             onClick={()=>{window.open('https://github.com/UniMC-Dev')}}><GithubOutlined /> GitHub</Button>
+          </Tooltip>
+        </div>
+        <div style={{marginTop: '100px'}}></div>
+        <div style={footer_css}>
+            <div style={{display:'flex',justifyContent:'space-evenly',alignItems:'center',height:'100%'}}>
+              <div style={{verticalAlign:'middle'}}>
+                <Image src='./logo.png' alt='logo' draggable='false' preview={false} width={100}></Image>
+              </div>
+              <div style={{color:'#000'}}>
+                <b>© 2023-2025 Universal Minecraft.</b>
+              </div>
+            </div>
         </div>
       </div>
     </>
@@ -351,3 +415,28 @@ const sscss = {
   borderRadius: '5px',
   overflow: 'hidden',
 };
+
+const about_css = {
+  margin:'0 auto',
+  width: 350,marginTop: '50px',textAlign: 'center',textAlign:'left',
+  boxShadow: '0 0 50px rgba(0, 0, 0, 0.15)',
+  borderRadius: '12px',
+}
+
+const pay_css = {
+  margin: '0 auto',
+  width: 200,
+  boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)',
+  borderRadius: '8px',
+  overflow: 'hidden',
+}
+
+const footer_css = {
+  width: '100vw',
+  lineHeight: '50px',
+  background: '#f9f9f9',
+  color: '#fff',
+  textAlign: 'center',
+  fontSize: '16px',
+  boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
+}
