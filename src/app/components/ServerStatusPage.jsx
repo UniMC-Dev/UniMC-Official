@@ -104,7 +104,7 @@ const ServerStatusPage = () => {
     <>
       {contextHolder}
       <div id='bg' style={{position: 'absolute',background:"url('./bg.png')",top: 0,left: 0,width: '100%',height: '100%',zIndex: -1,backgroundSize: 'cover',overflow: 'hidden',backgroundRepeat: 'no-repeat'}}></div>
-      <nav style={{ marginBottom: '24px',position: 'fixed',display: 'flex',justifyContent: 'space-evenly',alignItems: 'center',zIndex: 1,width: '100%',top: 0,left: 0,backgroundColor: 'rgba(255,255,255, 1)',backdropFilter: 'blur(10px)',boxShadow: '0 1px 4px rgba(0, 21, 41, 0.3)' }}>
+      <nav style={{ marginBottom: '24px',position: 'fixed',display: 'flex',justifyContent: 'space-evenly',alignItems: 'center',zIndex: 2,width: '100%',top: 0,left: 0,backgroundColor: 'rgba(255,255,255, 1)',backdropFilter: 'blur(10px)',boxShadow: '0 1px 4px rgba(0, 21, 41, 0.3)' }}>
             <div style={{textOverflow:"ellipsis",overflow:"hidden",whiteSpace:"nowrap",marginRight: '20px'}}>
               <img alt='logo' width={'70px'} height={'70px'} src='./logo.png' draggable='false' style={{verticalAlign:"middle"}}></img>
               <Title style={{whiteSpace: 'nowrap',marginLeft: '-5px',display: 'inline-block',alignSelf: 'center',fontSize: '20px',transform: 'translateY(3px)'}} level={3}>服务器联盟</Title>
@@ -113,7 +113,7 @@ const ServerStatusPage = () => {
               <Search placeholder="搜索" style={{width: "200px",verticalAlign:"middle"}} allowClear />
             </div>
           </nav>
-          <nav style={{padding: '10px 0',position: 'fixed',display: 'flex',justifyContent: 'space-evenly',alignItems: 'center',zIndex: 1,width: '100%',top: '60px',left: 0,backgroundColor: 'rgba(255,255,255, 1)',backdropFilter: 'blur(10px)',boxShadow: '0 4px 4px rgba(0, 21, 41, 0.3)' }}>
+          <nav style={{padding: '10px 0',position: 'fixed',display: 'flex',justifyContent: 'space-evenly',alignItems: 'center',zIndex: 2,width: '100%',top: '60px',left: 0,backgroundColor: 'rgba(255,255,255, 1)',backdropFilter: 'blur(10px)',boxShadow: '0 4px 4px rgba(0, 21, 41, 0.3)' }}>
             <div>
               <Anchor style={{transform: 'translateX(-5px)'}}
                 direction="horizontal"
@@ -142,18 +142,17 @@ const ServerStatusPage = () => {
               />
             </div>
             <div>
-              <Button type='primary' shape='round' size='large'>立刻加入</Button>
+              <Button type='primary' shape='round' size='large' style={{transform:'translateX(17px)'}}>立刻加入</Button>
             </div>
           </nav>
-      <div id='home' style={{width: '100%',height: '100%',position: 'absolute',top: 0,left: 0,zIndex: -1,backdropFilter: 'blur(10px)'}}>
+      <div id='home' style={{width: '100%',height: '100%',position: 'absolute',top: 0,left: 0,zIndex: 1,backdropFilter: 'blur(10px)'}}>
         <div style={{ padding: '24px' }}>
           <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',textAlign: 'center'}}>
-            <Card style={{margin: '0 auto',marginTop: '50px',textAlign: 'center',boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)'}}>
+            <Card style={{margin: '0 auto',marginTop: '50px',textAlign: 'center',boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)',zIndex: 2,width: '400px'}}>
               <img width={'250px'} height={'250px'} src='./logo.png' alt='logo' draggable='false' style={{margin: '-50px 0',marginBottom: '-70px'}}></img>
               <Divider />
               <Title level={3}>UniMC 服务器联盟</Title>
               <Text style={{marginTop: '20px'}}>一个服务器资源共享和技术共享组织</Text><br/>
-              <Collapse size="small" accordion style={{margin: '0 auto',marginTop: '15px',width:"300px",textAlign: 'left'}} items={intro} />
               <Button color='primary' variant='solid' style={{marginTop: '15px',marginRight: '10px'}}>申请加入</Button>
               <Button color='primary' variant='outlined' style={{marginTop: '15px'}}>了解更多</Button>
             </Card>
@@ -163,7 +162,8 @@ const ServerStatusPage = () => {
         </div>
       </div>
       <div style={{position:'absolute',top:'calc(100% + 60px)',left:'50%',transform:'translate(-50%,0)',textAlign: 'center',zIndex: -1,backdropFilter: 'blur(10px)',paddingBottom: '100px'}}>
-          <div id='list'>
+          <div id='list' style={{height:'150px',width:'100%'}}></div>
+          <div>
             <h1 className='title' style={{margin:'0'}}>服务器列表</h1>
             <Title level={5} style={{marginTop: '5px'}}>（排名不分前后）</Title>
             <Card
@@ -234,7 +234,8 @@ const ServerStatusPage = () => {
             <Image width={'200px'} style={sscss} preview={false} src='./ss/ss4.png' draggable='false'></Image>
         </div>
         <Divider style={{marginTop: '60px'}}></Divider>
-        <div id='about' style={{marginTop: '40px'}}>
+        <div id='about' style={{width: '100%',height: '60px'}}></div>
+        <div>
           <h1 className='title' id='title-red'>关于我们</h1>
           <Title level={3}>联盟历史</Title>
            <Timeline
@@ -267,19 +268,19 @@ const ServerStatusPage = () => {
           />
           <Title level={3}>主创成员</Title>
           <Space size={'small'}>
-              <Tooltip placement="bottom" title={'Xiaozhe Nice'} color='#108ee9' arrow={mergedArrow}>
+              <Tooltip placement="bottom" title={'Xiaozhe Nice'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
                 icon={<Image src='./avatar/xiaozhenice.png' alt='Xiaozhe Nice'></Image>}
               />
             </Tooltip>   
-            <Tooltip placement="bottom" title={'Zhanglao8'} color='#108ee9' arrow={mergedArrow}>
+            <Tooltip placement="bottom" title={'Zhanglao8'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
                 icon={<Image src='./avatar/zhanglao8.png' alt='Zhanglao8'></Image>}
               />
             </Tooltip>
-            <Tooltip placement="bottom" title={'WebYogurt'} color='#108ee9' arrow={mergedArrow}>
+            <Tooltip placement="bottom" title={'补糖醇酸奶_'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
                 icon={<Image src='./avatar/webyogurt.png' alt='Zhanglao8'></Image>}
@@ -288,31 +289,54 @@ const ServerStatusPage = () => {
           </Space>
           <Title style={{marginTop: '60px'}} level={3}>在任管理</Title>
           <Space size={'small'}>
-              <Tooltip placement="bottom" title={'Koshca_'} color='#108ee9' arrow={mergedArrow}>
+              <Tooltip placement="bottom" title={'Koshca_'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
                 icon={<Image src='./avatar/koshca.png' alt='Xiaozhe Nice'></Image>}
               />
             </Tooltip>   
-            <Tooltip placement="bottom" title={'Bili_Emo'} color='#108ee9' arrow={mergedArrow}>
+            <Tooltip placement="bottom" title={'Bili_Emo'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
                 icon={<Image src='./avatar/biliemo.png' alt='Zhanglao8'></Image>}
               />
             </Tooltip>
-            <Tooltip placement="bottom" title={'凉'} color='#108ee9' arrow={mergedArrow}>
+            <Tooltip placement="bottom" title={'凉'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
                 icon={<Image src='./avatar/liang.png' alt='Zhanglao8'></Image>}
               />
             </Tooltip>
-            <Tooltip placement="bottom" title={'CHAT-AoNie'} color='#108ee9' arrow={mergedArrow}>
+            <Tooltip placement="bottom" title={'CHAT-AoNie'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
                 icon={<Image src='./avatar/CHATAoNie.png' alt='Zhanglao8'></Image>}
               />
             </Tooltip>
           </Space>
+          <Title style={{marginTop: '60px'}} level={3}>技术顾问</Title>
+          <Space size={'small'}>
+              <Tooltip placement="bottom" title={'alazeprt'} color='#274B93' arrow={mergedArrow}>
+              <Avatar
+                size={ 100 }
+                icon={<Image src='./avatar/alazeprt.jpg' alt='alazeprt'></Image>}
+              />
+            </Tooltip>   
+            <Tooltip placement="bottom" title={'归星'} color='#274B93' arrow={mergedArrow}>
+              <Avatar
+                size={ 100 }
+                icon={<Image src='./avatar/star.png' alt='归星'></Image>}
+              />
+            </Tooltip>
+            <Tooltip placement="bottom" title={'Redapple_one'} color='#274B93' arrow={mergedArrow}>
+              <Avatar
+                size={ 100 }
+                icon={<Image src='./avatar/redapple.jpg' alt='Redapple_one'></Image>}
+              />
+            </Tooltip>
+          </Space>
+          <Title style={{marginTop: '60px'}} level={3}>疑难解答</Title>
+          <Collapse size="small" accordion style={{margin: '0 auto',marginTop: '15px',width:"80%",textAlign: 'left'}} items={intro} />
         </div>
       </div>
     </>

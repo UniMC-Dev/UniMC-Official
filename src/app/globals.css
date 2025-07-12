@@ -34,7 +34,7 @@ body {
   height: 36px;
   content: "";
   border-radius: 20px;
-  background-color: rgb(0, 138, 230);
+  background-color: #274B93;
   transform: translate(0,6px);
   position: relative;
   right: 10px;
@@ -44,7 +44,7 @@ body {
   height: 36px;
   content: "";
   border-radius: 20px;
-  background-color: rgb(0, 138, 230);
+  background-color: #274B93;
   transform: translate(0,6px);
   position: relative;
   left: 10px;
