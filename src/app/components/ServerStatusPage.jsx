@@ -236,7 +236,7 @@ const ServerStatusPage = () => {
         </div>
         <Divider style={{marginTop: '60px'}}></Divider>
         <div id='about' style={{width: '100%',height: '150px'}}></div>
-        <div>
+        <div style={{margin:"0 auto",maxWidth:'80%'}}>
           <h1 className='title' id='title-red'>关于我们</h1>
           <Title level={3} style={{marginTop: '20px'}}>联盟历史</Title>
            <Timeline
@@ -275,7 +275,7 @@ const ServerStatusPage = () => {
           </Card>
           <Image src='./logo_.png' alt='logo' draggable='false' preview={false} style={{borderRadius: '12px',width: '100px',height: '100px',boxShadow: '0 0 20px rgba(0, 0, 0, 0.1)',position:'relative',top: '-45px',left: '200px',transform: 'translateX(-50%)',background:'#fff'}}></Image>
           <Title level={3}>主创成员</Title>
-          <Space size={'small'}>
+          <Space size={'small'} wrap>
               <Tooltip placement="bottom" title={'Xiaozhe Nice'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
@@ -296,7 +296,7 @@ const ServerStatusPage = () => {
             </Tooltip>
           </Space>
           <Title style={{marginTop: '60px'}} level={3}>在任管理</Title>
-          <Space size={'small'}>
+          <Space size={'small'} wrap>
               <Tooltip placement="bottom" title={'Koshca_'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
@@ -323,7 +323,7 @@ const ServerStatusPage = () => {
             </Tooltip>
           </Space>
           <Title style={{marginTop: '60px'}} level={3}>技术顾问</Title>
-          <Space size={'small'}>
+          <Space size={'small'}  wrap>
               <Tooltip placement="bottom" title={'alazeprt'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
@@ -348,7 +348,7 @@ const ServerStatusPage = () => {
         </div>
         <Divider style={{marginTop: '60px'}}></Divider>
         <div style={{height: '150px',width: '100%',}} id='sponsor'></div>
-        <div>
+        <div style={{margin:'0 auto',maxWidth:'80%'}}>
           <h1 className='title' id='title-green'>赞助通道</h1>
           <b>由于我们是纯公益组织，没有任何收入来源，故我们需要更多的支持来维持运营<br/>若您有意赞助我们，请加入我们的特定支援群</b><br/>
           <Space style={{marginTop: '50px'}} size={'large'}>
