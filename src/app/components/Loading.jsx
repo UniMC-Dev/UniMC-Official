@@ -20,7 +20,7 @@ const Loading = () => {
         .loading-wrapper {
           width: 100vw;
           height: 100vh;
-          background: linear-gradient(315deg, #b8d0ffff 20%, #fff 80%,#fff 80%);
+          background: linear-gradient(315deg, #b8d0ffff 5%, #fff 80%, #fff 80%);
         }
 
         .loading-circle {

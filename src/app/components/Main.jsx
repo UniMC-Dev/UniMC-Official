@@ -104,7 +104,7 @@ const ServerStatusPage = () => {
     <>
       {contextHolder}
       <div id='bg' style={{position: 'absolute',background:"url('./bg.png')",top: 0,left: 0,width: '100%',height: '100%',zIndex: -1,backgroundSize: 'cover',overflow: 'hidden',backgroundRepeat: 'no-repeat'}}></div>
-      <nav style={{ marginBottom: '24px',position: 'fixed',display: 'flex',justifyContent: 'space-evenly',alignItems: 'center',zIndex: 2,width: '100%',top: 0,left: 0,backgroundColor: 'rgba(255,255,255, 1)',backdropFilter: 'blur(10px)',boxShadow: '0 1px 4px rgba(0, 21, 41, 0.3)' }}>
+      <nav style={{ marginBottom: '24px',position: 'fixed',display: 'flex',justifyContent: 'space-evenly',alignItems: 'center',zIndex: 2,width: '100%',top: 0,left: 0,backgroundColor: 'rgba(255,255,255, 1)',backdropFilter: 'blur(10px)'}}>
             <div style={{textOverflow:"ellipsis",overflow:"hidden",whiteSpace:"nowrap",marginRight: '20px'}}>
               <img alt='logo' width={'70px'} height={'70px'} src='./logo.png' draggable='false' style={{verticalAlign:"middle"}}></img>
               <Title style={{whiteSpace: 'nowrap',marginLeft: '-5px',display: 'inline-block',alignSelf: 'center',fontSize: '20px',transform: 'translateY(3px)'}} level={3}>服务器联盟</Title>
