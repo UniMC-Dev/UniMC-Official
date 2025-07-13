@@ -12,6 +12,7 @@ const Loading = () => {
           width={80} 
           height={80} 
           className="logo-image"
+          draggable="false"
         />
       </div>
 
