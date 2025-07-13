@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { AnimatePresence, motion } from 'framer-motion';
 import Loading from './components/Loading';
@@ -10,24 +10,46 @@ const ServerStatusPage = dynamic(() => import('./components/Main'), {
 });
 
 const Page = () => {
-  const [isReadyToShowContent, setIsReadyToShowContent] = useState(false);
+  const [isMainLoaded, setIsMainLoaded] = useState(false);
   const [showContent, setShowContent] = useState(false);
+  const mainRef = useRef(null);
 
   useEffect(() => {
-    // 模拟加载完成的定时器
-    const timer = setTimeout(() => {
-      setIsReadyToShowContent(true);
-      // 确保有足够时间让退出动画完成
-      setTimeout(() => setShowContent(true), 100);
-    }, 500);
+    const checkIfLoaded = () => {
+      if (mainRef.current) {
+        const hasContent = mainRef.current.children.length > 0;
+        const hasText = mainRef.current.textContent.trim().length > 0;
+        
+        if (hasContent || hasText) {
+          setIsMainLoaded(true);
+          setTimeout(() => setShowContent(true), 100);
+        }
+      }
+    };
 
-    return () => clearTimeout(timer);
+    const observer = new MutationObserver(checkIfLoaded);
+    
+    if (mainRef.current) {
+      observer.observe(mainRef.current, {
+        childList: true,
+        subtree: true,
+        characterData: true
+      });
+    }
+
+    // 也可以使用 requestAnimationFrame 来定期检查
+    const checkInterval = setInterval(checkIfLoaded, 100);
+
+    return () => {
+      observer.disconnect();
+      clearInterval(checkInterval);
+    };
   }, []);
 
   return (
     <main>
       <AnimatePresence mode="wait">
-        {!isReadyToShowContent ? (
+        {!showContent ? (
           <motion.div
             key="loading"
             initial={{ opacity: 1 }}
@@ -37,17 +59,32 @@ const Page = () => {
           >
             <Loading />
           </motion.div>
-        ) : showContent ? ( 
+        ) : (
           <motion.div
             key="content"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.0, ease: "easeInOut", delay: 0.1 }}
+            ref={mainRef}
           >
             <ServerStatusPage />
           </motion.div>
-        ) : null}
+        )}
       </AnimatePresence>
+      
+      {!isMainLoaded && (
+        <div 
+          ref={mainRef}
+          style={{ 
+            position: 'absolute', 
+            left: '-9999px', 
+            opacity: 0,
+            pointerEvents: 'none'
+          }}
+        >
+          <ServerStatusPage />
+        </div>
+      )}
     </main>
   );
 };
