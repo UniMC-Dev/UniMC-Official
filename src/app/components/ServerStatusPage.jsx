@@ -115,7 +115,7 @@ const ServerStatusPage = () => {
           </nav>
           <nav style={{padding: '10px 0',position: 'fixed',display: 'flex',justifyContent: 'space-evenly',alignItems: 'center',zIndex: 2,width: '100%',top: '60px',left: 0,backgroundColor: 'rgba(255,255,255, 1)',backdropFilter: 'blur(10px)',boxShadow: '0 4px 4px rgba(0, 21, 41, 0.15)' }}>
             <div>
-              <Anchor style={{transform: 'translateX(-5px)'}}
+              <Anchor style={{transform: 'translateX(-3.5px)'}}
                 direction="horizontal"
                 items={[
                   {
@@ -275,7 +275,7 @@ const ServerStatusPage = () => {
           </Card>
           <Image src='./logo_.png' alt='logo' draggable='false' preview={false} style={{borderRadius: '12px',width: '100px',height: '100px',boxShadow: '0 0 20px rgba(0, 0, 0, 0.1)',position:'relative',top: '-45px',left: '200px',transform: 'translateX(-50%)',background:'#fff'}}></Image>
           <Title level={3}>主创成员</Title>
-          <Space size={'small'} wrap>
+          <Space style={spaceCenter_css} size={'small'} wrap>
               <Tooltip placement="bottom" title={'Xiaozhe Nice'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
@@ -296,7 +296,7 @@ const ServerStatusPage = () => {
             </Tooltip>
           </Space>
           <Title style={{marginTop: '60px'}} level={3}>在任管理</Title>
-          <Space size={'small'} wrap>
+          <Space style={spaceCenter_css} size={'small'} wrap>
               <Tooltip placement="bottom" title={'Koshca_'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
@@ -323,7 +323,7 @@ const ServerStatusPage = () => {
             </Tooltip>
           </Space>
           <Title style={{marginTop: '60px'}} level={3}>技术顾问</Title>
-          <Space size={'small'}  wrap>
+          <Space style={spaceCenter_css} size={'small'}  wrap>
               <Tooltip placement="bottom" title={'alazeprt'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
@@ -440,3 +440,5 @@ const footer_css = {
   fontSize: '16px',
   boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
 }
+
+const spaceCenter_css = {width: '100%',display: 'flex',justifyContent: 'center'}
