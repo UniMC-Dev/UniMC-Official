@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import { AnimatePresence, motion } from 'framer-motion';
 import Loading from './components/Loading';
 
-const ServerStatusPage = dynamic(() => import('./components/ServerStatusPage'), {
+const ServerStatusPage = dynamic(() => import('./components/Main'), {
   ssr: false,
 });
 

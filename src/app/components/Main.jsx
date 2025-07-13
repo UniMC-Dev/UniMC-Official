@@ -154,7 +154,7 @@ const ServerStatusPage = () => {
               <Divider />
               <Title level={3}>UniMC 服务器联盟</Title>
               <Text style={{marginTop: '20px'}}>一个服务器资源共享和技术共享组织</Text><br/>
-              <Button color='primary' variant='solid' style={{marginTop: '15px',marginRight: '10px'}}>申请加入</Button>
+              <Button onClick={()=>{location.href='#join'}} color='primary' variant='solid' style={{marginTop: '15px',marginRight: '10px'}}>申请加入</Button>
               <Button onClick={()=>{window.open('https://status.zhanglao8.fun/')}} color='primary' variant='outlined' style={{marginTop: '15px'}}>服务状态</Button>
             </Card>
           </div>
