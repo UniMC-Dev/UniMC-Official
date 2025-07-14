@@ -3,44 +3,47 @@ name: Deploy Next.js to Server
 on:
   push:
     branches:
-      - main  # 如果你用的是 master，请改成 master
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: 📦 Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
-      - name: 📦 Install dependencies
+      - name: Install dependencies
         run: npm ci
 
-      - name: 🔨 Build project
-        run: npm run build
+      - name: Build standalone
+        run: npm run build:standalone
 
-      - name: 📁 Package for deployment
+      - name: Package build for deployment
         run: |
-          tar -czf deploy.tar.gz .next public package.json package-lock.json next.config.mjs
+          tar -czf deploy.tar.gz .next/standalone package.json node_modules
 
-      - name: 🚀 Upload package to server via SCP
+      - name: Upload package to server via SCP
         uses: appleboy/scp-action@v0.1.5
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           source: "deploy.tar.gz"
-          target: "/opt/nodejs/deploy.tar.gz" # ✅ 固定上传文件名
+          target: "/opt/nodejs"
 
-      - name: 🛠️ Run deploy script via SSH
+      - name: Run deploy script via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          script: "bash /root/sh/deploy.sh"
+          script: |
+            cd /opt/nodejs
+            tar -xzf deploy.tar.gz
+            bash /root/sh/deploy.sh
