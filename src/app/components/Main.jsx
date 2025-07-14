@@ -10,6 +10,8 @@ import {
   ClockCircleOutlined,
   GithubOutlined,
   QqOutlined,
+  BilibiliOutlined,
+  CheckSquareOutlined
 } from '@ant-design/icons';
 
 const { Search } = Input;
@@ -400,6 +402,52 @@ const ServerStatusPage = () => {
               <div style={{color:'#000'}}>
                 <b>© 2023-2025 Universal Minecraft.</b>
               </div>
+            </div>
+            <div style={{display:'flex',justifyContent:'space-evenly',alignItems:'center',height:'100%',marginTop:'-20px',paddingBottom:'20px'}}>
+              <div>
+                <Space>
+                  <Avatar
+                    size={ 40 }
+                    icon={<BilibiliOutlined />}
+                    style={{background:'rgba(247, 151, 162, 1)',color:'#fff',cursor:'pointer'}}
+                    onClick={()=>{window.open('https://space.bilibili.com/593367813')}}
+                  />
+                  <Avatar
+                    size={ 40 }
+                    icon={<QqOutlined/>}
+                    style={{background:'#00a1d6',color:'#fff',cursor:'pointer'}}
+                    onClick={()=>{
+                      navigator.clipboard.writeText('719304821')
+                      .then(() => {
+                        msg.success('群号已复制');
+                      })
+                      .catch(() => {
+                        msg.error('群号复制失败');
+                      });
+                    }}
+                  />
+                  <Avatar
+                    size={ 40 }
+                    icon={<GithubOutlined/>}
+                    style={{background:'#24292e',color:'#fff',cursor:'pointer'}}
+                    onClick={()=>{window.open('https://github.com/UniMC-Dev')}}
+                  />
+                </Space>
+              </div>
+              <div style={{color:'#000',transform:'translateX(16px)'}}>
+                <a id='icp' href="https://icp.gov.moe/?keyword=20250236" draggable='false' target="_blank"><CheckSquareOutlined /> 萌ICP备20250236号</a>
+              </div>
+              <style jsx>{
+                  `#icp{
+                    text-decoration:none;
+                    color:#000;
+                    transition:all 0.24s ease;
+                  }#icp:hover{
+                    color:#274B93;
+                    text-shadow:0 0 10px #274b9375;
+                  }`
+                }
+              </style>
             </div>
         </div>
       </div>
