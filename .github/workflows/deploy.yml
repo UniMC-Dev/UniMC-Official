@@ -1,35 +1,35 @@
-name: Deploy to Server
+name: Deploy Next.js to Server
 
 on:
   push:
     branches:
-      - master
+      - main  # 如果你用的是 master，请改成 master
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source
+      - name: 📥 Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: 📦 Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20  # 根据你的项目版本调整
 
-      - name: Install & Build
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🔨 Build project
+        run: npm run build
+
+      - name: 📁 Package for deployment
         run: |
-          npm ci
-          npm run build
-          npm prune --production  # 删除开发依赖
+          tar -czf deploy.tar.gz .next public package.json package-lock.json next.config.mjs
 
-      - name: Archive production build
-        run: |
-          tar -czf deploy.tar.gz .next public package.json node_modules
-
-      - name: Upload to server via SCP
-        uses: appleboy/scp-action@v0.1.4
+      - name: 🚀 Upload package to server via SCP
+        uses: appleboy/scp-action@v0.1.5
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
@@ -37,7 +37,7 @@ jobs:
           source: "deploy.tar.gz"
           target: "/opt/nodejs"
 
-      - name: Run deploy script via SSH
+      - name: 🛠️ Run deploy script via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
