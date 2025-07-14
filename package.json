@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:export": "cross-env NEXT_EXPORT=true next build && next export",
+    "build:export": "cross-env NEXT_EXPORT=true next build",
     "build:standalone": "next build",
     "start": "next start",
     "lint": "next lint"
