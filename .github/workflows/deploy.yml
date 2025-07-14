@@ -1,45 +1,65 @@
-name: Deploy Next.js
+name: Deploy Next.js to Server
 
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: 📥 Checkout code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # 拉取完整历史以获取 commit 日志
 
-      - name: Setup Node.js
+      - name: 📦 Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: npm ci
 
-      - name: Build Next.js
-        run: npm run build
+      - name: 🔨 Build (standalone)
+        run: npm run build:standalone
 
-      - name: Package build files
-        run: tar -czf deploy.tar.gz .next public package.json package-lock.json next.config.mjs
+      - name: 🔍 Show current commit
+        run: git log -1 --oneline
 
-      - name: Upload to server
+      - name: 📁 Package deploy files
+        run: |
+          tar -czf deploy.tar.gz \
+            .next \
+            public \
+            package.json \
+            package-lock.json \
+            next.config.mjs \
+            node_modules
+
+      - name: 🚀 Upload to server (via SCP)
         uses: appleboy/scp-action@v0.1.5
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          source: deploy.tar.gz
-          target: /opt/nodejs
+          source: "deploy.tar.gz"
+          target: "/opt/nodejs"
 
-      - name: Run deploy script on server
+      - name: 🛠️ SSH: Unpack and reload with PM2
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          script: bash /root/sh/deploy.sh
+          script: |
+            cd /opt/nodejs
+            rm -rf .next node_modules
+            tar -xzf deploy.tar.gz
+            rm deploy.tar.gz
+            npm install --omit=dev
+            pm2 delete next-app || true
+            pm2 start npm --name next-app -- start
+            pm2 save
