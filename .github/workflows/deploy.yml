@@ -10,26 +10,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout code
+      - name: Checkout code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # 拉取完整历史以获取 commit 日志
+          fetch-depth: 0
 
-      - name: 📦 Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
-      - name: 📦 Install dependencies
+      - name: Install dependencies
         run: npm ci
 
-      - name: 🔨 Build (standalone)
+      - name: Build (standalone)
         run: npm run build:standalone
 
-      - name: 🔍 Show current commit
+      - name: Show current commit
         run: git log -1 --oneline
 
-      - name: 📁 Package deploy files
+      - name: Package deploy files
         run: |
           tar -czf deploy.tar.gz \
             .next \
@@ -39,7 +39,7 @@ jobs:
             next.config.mjs \
             node_modules
 
-      - name: 🚀 Upload to server (via SCP)
+      - name: Upload to server (via SCP)
         uses: appleboy/scp-action@v0.1.5
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -48,7 +48,7 @@ jobs:
           source: "deploy.tar.gz"
           target: "/opt/nodejs"
 
-      - name: 🛠️ SSH: Unpack and reload with PM2
+      - name: SSH unpack and restart via PM2
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
