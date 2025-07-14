@@ -1,4 +1,4 @@
-name: Deploy Next.js to Server
+name: Deploy Next.js
 
 on:
   push:
@@ -21,29 +21,25 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build standalone
-        run: npm run build:standalone
+      - name: Build Next.js
+        run: npm run build
 
-      - name: Package build for deployment
-        run: |
-          tar -czf deploy.tar.gz .next/standalone package.json node_modules
+      - name: Package build files
+        run: tar -czf deploy.tar.gz .next public package.json package-lock.json next.config.mjs
 
-      - name: Upload package to server via SCP
+      - name: Upload to server
         uses: appleboy/scp-action@v0.1.5
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          source: "deploy.tar.gz"
-          target: "/opt/nodejs"
+          source: deploy.tar.gz
+          target: /opt/nodejs
 
-      - name: Run deploy script via SSH
+      - name: Run deploy script on server
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          script: |
-            cd /opt/nodejs
-            tar -xzf deploy.tar.gz
-            bash /root/sh/deploy.sh
+          script: bash /root/sh/deploy.sh
