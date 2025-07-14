@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export": "NEXT_EXPORT=true next export",
+    "build:export": "cross-env NEXT_EXPORT=true next build",
     "build:standalone": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -23,9 +23,9 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
+    "autoprefixer": "^10.4.21",
+    "cross-env": "^7.0.3",
     "eslint": "^9",
-    "eslint-config-next": "15.3.5",
-    "tailwindcss": "^4"
+    "eslint-config-next": "15.3.5"
   }
 }

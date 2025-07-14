@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: process.env.NEXT_EXPORT === 'true' ? undefined : 'standalone',
+  output: process.env.NEXT_EXPORT === 'true' ? 'export' : 'standalone',
 }
 
-export default nextConfig
+export default nextConfig;
