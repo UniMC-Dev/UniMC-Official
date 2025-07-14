@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "NEXT_EXPORT=true next export",
+    "build:standalone": "next build",
     "start": "next start",
     "lint": "next lint"
   },

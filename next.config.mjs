@@ -1,7 +1,6 @@
-// next.config.mjs
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // 启用静态导出
-};
+  output: process.env.NEXT_EXPORT === 'true' ? undefined : 'standalone',
+}
 
-export default nextConfig;
+export default nextConfig
