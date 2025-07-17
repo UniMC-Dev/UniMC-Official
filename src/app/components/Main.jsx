@@ -2,7 +2,7 @@
 
 import '@ant-design/v5-patch-for-react-19';
 
-import React, { useState,useMemo } from "react";
+import React, { useState,useMemo,useEffect } from "react";
 import { Card, Button, Typography, Space,Image,Input,Divider,Collapse,Anchor,Carousel,message,Timeline,Avatar, Tooltip} from 'antd';
 const { Meta } = Card;
 import {
@@ -51,7 +51,6 @@ const WaveBackground = () => {
           />
         </path>
 
-        {/* 顶部波浪 (透明度更低，颜色更浅) */}
         <path
           className="wave-path wave-top"
           d="M0,180 Q360,140 720,180 T1440,180 V200 H0 Z"
@@ -102,53 +101,108 @@ const ServerStatusPage = () => {
       pointAtCenter: true,
     };
   }, [arrow]);
+  
   return (
     <>
       {contextHolder}
-      <div id='bg' style={{position: 'absolute',background:"url('./bg.png')",top: 0,left: 0,width: '100%',height: '100%',zIndex: -1,backgroundSize: 'cover',overflow: 'hidden',backgroundRepeat: 'no-repeat'}}></div>
-      <nav style={{ marginBottom: '24px',position: 'fixed',display: 'flex',justifyContent: 'space-evenly',alignItems: 'center',zIndex: 2,width: '100%',top: 0,left: 0,backgroundColor: 'rgba(255,255,255, 1)',backdropFilter: 'blur(10px)'}}>
-            <div style={{textOverflow:"ellipsis",overflow:"hidden",whiteSpace:"nowrap",marginRight: '20px'}}>
-              <img alt='logo' width={'70px'} height={'70px'} src='./logo.png' draggable='false' style={{verticalAlign:"middle"}}></img>
-              <Title style={{whiteSpace: 'nowrap',marginLeft: '-5px',display: 'inline-block',alignSelf: 'center',fontSize: '20px',transform: 'translateY(3px)'}} level={3}>服务器联盟</Title>
-            </div>
-            <div>
-              <Search placeholder="搜索" style={{width: "200px",verticalAlign:"middle"}} allowClear />
-            </div>
-          </nav>
-          <nav style={{padding: '10px 0',position: 'fixed',display: 'flex',justifyContent: 'space-evenly',alignItems: 'center',zIndex: 2,width: '100%',top: '60px',left: 0,backgroundColor: 'rgba(255,255,255, 1)',backdropFilter: 'blur(10px)',boxShadow: '0 4px 4px rgba(0, 21, 41, 0.15)' }}>
-            <div>
-              <Anchor style={{transform: 'translateX(-3.5px)'}}
-                direction="horizontal"
-                items={[
-                  {
-                    key: 'home',
-                    href: '#home',
-                    title: '首页',
-                  },
-                  {
-                    key: 'list',
-                    href: '#list',
-                    title: '服务器列表',
-                  },
-                  {
-                    key: 'about',
-                    href: '#about',
-                    title: '关于我们',
-                  },
-                  {
-                    key: 'sponsor',
-                    href: '#sponsor',
-                    title: '赞助',
-                  },
-                ]}
-              />
-            </div>
-            <div>
-              <Button type='primary' shape='round' size='large' style={{transform:'translateX(17px)'}}
-              onClick={()=>{location.href='#join'}}>立刻加入</Button>
-            </div>
-          </nav>
-      <div id='home' style={{width: '100%',height: '100%',position: 'absolute',top: 0,left: 0,zIndex: 1,backdropFilter: 'blur(10px)'}}>
+      <div id='bg' style={{position: 'fixed',background:"url('./bg.png')",top: 0,left: 0,width: '100%',height: '100%',zIndex: -1,backgroundSize: 'cover',overflow: 'hidden',backgroundRepeat: 'no-repeat'}}></div>
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          zIndex: 10,
+          background: 'radial-gradient(circle at 100% 0,hsla(0, 0%, 100%, 0.93) 0,hsla(0, 0%, 96%, 0.88) 183%)',
+          backdropFilter: 'blur(15px) saturate(86%)',
+          WebkitBackdropFilter: 'blur(15px) saturate(86%)',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // 统一阴影
+        }}
+      >
+        <nav
+          style={{
+            display: 'flex',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+            height: '60px',
+          }}
+        >
+          <div
+            style={{
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+              whiteSpace: 'nowrap',
+              marginRight: '20px',
+              marginTop: '10px',
+            }}
+          >
+            <img
+              alt="logo"
+              width="70px"
+              height="70px"
+              src="./logo.png"
+              draggable="false"
+              style={{ verticalAlign: 'middle' }}
+            />
+            <Title
+              level={3}
+              style={{
+                whiteSpace: 'nowrap',
+                marginLeft: '-5px',
+                display: 'inline-block',
+                alignSelf: 'center',
+                fontSize: '20px',
+                transform: 'translateY(3px)',
+              }}
+            >
+              服务器联盟
+            </Title>
+          </div>
+          <div style={{marginTop: '10px',}}>
+            <Search
+              placeholder="搜索"
+              style={{ width: '200px', verticalAlign: 'middle' }}
+              allowClear
+            />
+          </div>
+        </nav>
+
+        <nav
+          style={{
+            padding: '10px 0',
+            display: 'flex',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+          }}
+        >
+          <div>
+            <Anchor
+              style={{ transform: 'translateX(-3.5px)' }}
+              direction="horizontal"
+              items={[
+                { key: 'home', href: '#home', title: '首页' },
+                { key: 'list', href: '#list', title: '服务器列表' },
+                { key: 'about', href: '#about', title: '关于我们' },
+                { key: 'sponsor', href: '#sponsor', title: '赞助' },
+              ]}
+            />
+          </div>
+          <div>
+            <Button
+              type="primary"
+              shape="round"
+              size="large"
+              style={{ transform: 'translateX(17px)' }}
+              onClick={() => {
+                location.href = '#join';
+              }}
+            >
+              立刻加入
+            </Button>
+          </div>
+        </nav>
+      </div>
+      <div id='home' style={{width: '100%',height: '100%',position: 'absolute',top: 0,left: 0,zIndex: 1}}>
         <div style={{ padding: '24px' }}>
           <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',textAlign: 'center'}}>
             <Card style={{margin: '0 auto',marginTop: '50px',textAlign: 'center',boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)',zIndex: 2,width: '400px'}}>
@@ -160,11 +214,11 @@ const ServerStatusPage = () => {
               <Button onClick={()=>{window.open('https://status.zhanglao8.fun/')}} color='primary' variant='outlined' style={{marginTop: '15px'}}>服务状态</Button>
             </Card>
           </div>
-          <small style={{position: 'absolute',bottom: '10px',left: '50vw',transform: 'translateX(-50%)',fontSize: '16px',color: 'rgba(0, 0, 0, .8)'}}>👇 往下拉查看更多内容</small>
-          <WaveBackground/>
+          <small onClick={()=>{ const targetScroll = window.innerHeight + 60;window.scrollTo({ top: targetScroll, behavior: 'smooth' });}} id='down-text'>👇 探索 UniMC</small>
+          {/* <WaveBackground/> */}
         </div>
       </div>
-      <div style={{position:'absolute',top:'calc(100% + 60px)',left:'50%',transform:'translate(-50%,0)',textAlign: 'center',zIndex: -1,backdropFilter: 'blur(10px)'}}>
+      <div style={{position:'absolute',top:'calc(100%)',background:'#fff',left:'50%',transform:'translate(-50%,0)',textAlign: 'center',zIndex: -1,backdropFilter: 'blur(10px)'}}>
           <div id='list' style={{height:'150px',width:'100%'}}></div>
           <div>
             <h1 className='title' style={{margin:'0'}}>服务器列表</h1>
