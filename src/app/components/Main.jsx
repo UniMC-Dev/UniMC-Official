@@ -386,12 +386,6 @@ const ServerStatusPage = () => {
                 icon={<Image src='./avatar/alazeprt.jpg' alt='alazeprt'></Image>}
               />
             </Tooltip>   
-            <Tooltip placement="bottom" title={'归星'} color='#274B93' arrow={mergedArrow}>
-              <Avatar
-                size={ 100 }
-                icon={<Image src='./avatar/star.png' alt='归星'></Image>}
-              />
-            </Tooltip>
             <Tooltip placement="bottom" title={'Redapple_one'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
@@ -414,7 +408,7 @@ const ServerStatusPage = () => {
             <b>若您想要为我们提供技术和硬件支持，也可以申请加群</b><br/>
             <Button color='primary' variant='outlined' size='large' shape='round' style={{marginTop: '15px'}}
             onClick={()=>{
-              navigator.clipboard.writeText('1056723570')
+              navigator.clipboard.writeText('1055233109')
               .then(() => {
                 msg.success('已复制');
               })
@@ -433,7 +427,7 @@ const ServerStatusPage = () => {
           <Tooltip placement="bottom" title={'请务必详细解释入群理由'} color='blue' arrow={mergedArrow}>
             <Button color='blue' variant='outlined' size='large' style={{marginLeft: '10px',marginRight: '10px'}} 
             onClick={()=>{
-              navigator.clipboard.writeText('719304821')
+              navigator.clipboard.writeText('1058655479')
               .then(() => {
                 msg.success('群号已复制');
               })
@@ -471,7 +465,7 @@ const ServerStatusPage = () => {
                     icon={<QqOutlined/>}
                     style={{background:'#00a1d6',color:'#fff',cursor:'pointer'}}
                     onClick={()=>{
-                      navigator.clipboard.writeText('719304821')
+                      navigator.clipboard.writeText('1058655479')
                       .then(() => {
                         msg.success('群号已复制');
                       })
