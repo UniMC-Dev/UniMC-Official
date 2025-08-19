@@ -247,16 +247,16 @@ const ServerStatusPage = () => {
               cover={<img alt="example" src="./icon/tacs.svg" draggable='false'/>}
             >
               <Meta title="茶水晶 TACS" description="着眼创新，放眼未来" /><br/>
-              <Button onClick={()=>{window.open('https://www.tacserver.cn/')}} type='primary' shape='round' size='large'>访问茶水晶官网</Button>
+              <Button onClick={()=>{window.open('https://tacs.top/')}} type='primary' shape='round' size='large'>访问茶水晶官网</Button>
               <Button onClick={()=>{
-                navigator.clipboard.writeText('631421425')
+                navigator.clipboard.writeText('tacserver.com')
                   .then(() => {
                     msg.success('已复制');
                   })
                   .catch(() => {
                     msg.error('复制失败');
                   });
-              }} style={{marginTop: '10px'}} shape='round' size='large'>复制群号</Button>
+              }} style={{marginTop: '10px'}} shape='round' size='large'>复制外服地址</Button>
             </Card>
             <Card
               hoverable
