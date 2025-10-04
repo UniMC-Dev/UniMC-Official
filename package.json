@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "build:export": "cross-env NEXT_EXPORT=true next build",
     "build:standalone": "next build",
     "start": "next start",
