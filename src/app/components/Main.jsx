@@ -105,7 +105,7 @@ const ServerStatusPage = () => {
   return (
     <>
       {contextHolder}
-      <div id='bg' style={{position: 'fixed',background:"url('./bg.png')",top: 0,left: 0,width: '100%',height: '100%',zIndex: -1,backgroundSize: 'cover',overflow: 'hidden',backgroundRepeat: 'no-repeat'}}></div>
+      <div id='bg' style={{position: 'fixed',background:"url('./bg.webp')",top: 0,left: 0,width: '100%',height: '100%',zIndex: -1,backgroundSize: 'cover',overflow: 'hidden',backgroundRepeat: 'no-repeat'}}></div>
       <div
         style={{
           position: 'fixed',
@@ -226,7 +226,7 @@ const ServerStatusPage = () => {
             <Card
               hoverable
               style={{ width: 240,display: 'inline-block',marginLeft: '10px',marginRight: '10px',marginTop: '20px' }}
-              cover={<img alt="example" src="./icon/mcbucket.png" draggable='false'/>}
+              cover={<img alt="example" src="./icon/mcbucket.webp" draggable='false'/>}
             >
               <Meta title="MCBUCKET 公益服" description="纯公益多玩法服务器" /><br/>
               <Button onClick={()=>{window.open('https://www.mcbucket.dpdns.org')}} type='primary' shape='round' size='large'>访问麦桶官网</Button>
@@ -261,7 +261,7 @@ const ServerStatusPage = () => {
             <Card
               hoverable
               style={{ width: 240,display: 'inline-block',marginLeft: '10px',marginRight: '10px' ,marginTop: '20px' }}
-              cover={<img alt="example" src="./icon/bjx.png" draggable='false'/>}
+              cover={<img alt="example" src="./icon/bjx.webp" draggable='false'/>}
             >
               <Meta title="北极星生存服" description="一个新兴服务器" /><br/>
               <Button  onClick={() => {
@@ -335,19 +335,19 @@ const ServerStatusPage = () => {
               <Tooltip placement="bottom" title={'Xiaozhe Nice'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
-                icon={<Image src='./avatar/xiaozhenice.png' alt='Xiaozhe Nice'></Image>}
+                icon={<Image src='./avatar/xiaozhenice.webp' alt='Xiaozhe Nice'></Image>}
               />
             </Tooltip>   
             <Tooltip placement="bottom" title={'Zhanglao8'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
-                icon={<Image src='./avatar/zhanglao8.png' alt='Zhanglao8'></Image>}
+                icon={<Image src='./avatar/zhanglao8.webp' alt='Zhanglao8'></Image>}
               />
             </Tooltip>
             <Tooltip placement="bottom" title={'补糖醇酸奶_'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
-                icon={<Image src='./avatar/webyogurt.png' alt='Zhanglao8'></Image>}
+                icon={<Image src='./avatar/webyogurt.webp' alt='Zhanglao8'></Image>}
               />
             </Tooltip>
           </Space>
@@ -356,25 +356,25 @@ const ServerStatusPage = () => {
               <Tooltip placement="bottom" title={'Koshca_'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
-                icon={<Image src='./avatar/koshca.png' alt='Xiaozhe Nice'></Image>}
+                icon={<Image src='./avatar/koshca.webp' alt='Xiaozhe Nice'></Image>}
               />
             </Tooltip>   
             <Tooltip placement="bottom" title={'Bili_Emo'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
-                icon={<Image src='./avatar/biliemo.png' alt='Zhanglao8'></Image>}
+                icon={<Image src='./avatar/biliemo.webp' alt='Zhanglao8'></Image>}
               />
             </Tooltip>
             <Tooltip placement="bottom" title={'凉'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
-                icon={<Image src='./avatar/liang.png' alt='Zhanglao8'></Image>}
+                icon={<Image src='./avatar/liang.webp' alt='Zhanglao8'></Image>}
               />
             </Tooltip>
             <Tooltip placement="bottom" title={'CHAT-AoNie'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
-                icon={<Image src='./avatar/CHATAoNie.png' alt='Zhanglao8'></Image>}
+                icon={<Image src='./avatar/CHATAoNie.webp' alt='Zhanglao8'></Image>}
               />
             </Tooltip>
           </Space>
@@ -383,13 +383,13 @@ const ServerStatusPage = () => {
               <Tooltip placement="bottom" title={'alazeprt'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
-                icon={<Image src='./avatar/alazeprt.jpg' alt='alazeprt'></Image>}
+                icon={<Image src='./avatar/alazeprt.webp' alt='alazeprt'></Image>}
               />
             </Tooltip>   
             <Tooltip placement="bottom" title={'Redapple_one'} color='#274B93' arrow={mergedArrow}>
               <Avatar
                 size={ 100 }
-                icon={<Image src='./avatar/redapple.jpg' alt='Redapple_one'></Image>}
+                icon={<Image src='./avatar/redapple.webp' alt='Redapple_one'></Image>}
               />
             </Tooltip>
           </Space>
